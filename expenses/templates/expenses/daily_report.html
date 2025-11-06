@@ -1,0 +1,28 @@
+{% extends 'expenses/base.html' %}
+{% block title %}Daily Report — Expense Tracker{% endblock %}
+
+{% block content %}
+<h2>📅 Daily Report</h2>
+<p class="muted">Today's total: <strong>₹{{ today_total }}</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th class="right">Total (₹)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for day, total in daily_data %}
+    <tr>
+      <td>{{ day|date:"d M Y" }}</td>
+      <td class="right">{{ total }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="2" class="muted">No expenses found for the last 30 days 🌸</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

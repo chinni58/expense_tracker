@@ -1,0 +1,28 @@
+{% extends 'expenses/base.html' %}
+{% block title %}Monthly Report — Expense Tracker{% endblock %}
+
+{% block content %}
+<h2>📆 Monthly Report</h2>
+<p class="muted">This month total: <strong>₹{{ monthly_total }}</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Month</th>
+      <th class="right">Total (₹)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in monthly %}
+    <tr>
+      <td>{{ row.month|date:"F Y" }}</td>
+      <td class="right">{{ row.total }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="2" class="muted">No monthly data yet 🌿</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

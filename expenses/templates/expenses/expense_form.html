@@ -1,0 +1,32 @@
+{% extends 'expenses/base.html' %}
+{% block content %}
+<h2>{{ title }}</h2>
+<form method="post" style="max-width:520px">
+  {% csrf_token %}
+  <div>
+    {{ form.non_field_errors }}
+    <div style="margin-bottom:8px;">
+      {{ form.date.label_tag }}<br>
+      {{ form.date }}
+      {{ form.date.errors }}
+    </div>
+    <div style="margin-bottom:8px;">
+      {{ form.category.label_tag }}<br>
+      {{ form.category }}
+      {{ form.category.errors }}
+    </div>
+    <div style="margin-bottom:8px;">
+      {{ form.amount.label_tag }}<br>
+      {{ form.amount }}
+      {{ form.amount.errors }}
+    </div>
+    <div style="margin-bottom:8px;">
+      {{ form.description.label_tag }}<br>
+      {{ form.description }}
+      {{ form.description.errors }}
+    </div>
+    <button class="btn" type="submit">Save</button>
+    <a class="btn" href="{% url 'expenses:index' %}" style="background:#6b7280">Cancel</a>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'expenses/base.html' %}
+{% block content %}
+<h2 class="muted small">Delete Expense</h2>
+<p>Are you sure you want to delete <strong>₹{{ expense.amount }}</strong> on <strong>{{ expense.date }}</strong>?</p>
+<form method="post">
+  {% csrf_token %}
+  <button class="btn danger" type="submit">Yes, delete</button>
+  <a class="btn" href="{% url 'expenses:index' %}">Cancel</a>
+</form>
+{% endblock %}

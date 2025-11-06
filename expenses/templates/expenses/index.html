@@ -1,0 +1,50 @@
+{% extends 'expenses/base.html' %}
+{% block title %}Home — Expense Tracker{% endblock %}
+{% block content %}
+
+<div class="summary">
+  <div class="card">
+    <div class="muted">Today's Total</div>
+    <h3>₹{{ today_total }}</h3>
+  </div>
+  <div class="card">
+    <div class="muted">This Month</div>
+    <h3>₹{{ this_month_total }}</h3>
+  </div>
+  <div class="card">
+    <div class="muted">Quick Action</div>
+    <a class="btn" href="{% url 'expenses:add' %}">+ Add Expense</a>
+  </div>
+</div>
+
+<h2>🧾 Recent Expenses</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th class="right">Amount</th>
+      <th class="right">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for e in expenses %}
+    <tr>
+      <td>{{ e.date|date:"d M Y" }}</td>
+      <td>{{ e.get_category_display }}</td>
+      <td>{{ e.description }}</td>
+      <td class="right">₹{{ e.amount }}</td>
+      <td class="right">
+        <a href="{% url 'expenses:edit' e.id %}">✏️</a>
+        <a href="{% url 'expenses:delete' e.id %}" class="muted">🗑️</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="5" class="muted">No expenses yet. Start tracking your spending ✨</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
