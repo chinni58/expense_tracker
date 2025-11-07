@@ -1,1 +1,1 @@
-gunicorn yourprojectname.wsgi
+gunicorn expense_tracker.wsgi
